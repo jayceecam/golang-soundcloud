@@ -6,7 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"ioutil"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
