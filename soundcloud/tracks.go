@@ -38,6 +38,12 @@ func (t *TrackApi) Favorite(id uint64) *userEndpoint {
 	return t.api.newUserEndpoint(t.base, "favorites", id)
 }
 
+func (t *TrackApi) Stream() (string, error) {
+	ret := &string{}
+	err := t.api.get(t.base+"/favorites", nil, &ret)
+	return ret, err
+}
+
 // No idea how these endpoints works
 // func (t *TrackApi) SharedToUsers() (*usersEndpoint) {
 // func (t *TrackApi) SharedToEmails() (*emailsEndpoint) {
