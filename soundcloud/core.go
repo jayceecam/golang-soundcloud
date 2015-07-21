@@ -144,7 +144,7 @@ func (api *Api) do(req *http.Request, r interface{}) error {
 	}
 
 	if _, ok := r.(*[]byte); ok {
-		bytes, err = ioutil.ReadAll(resp.Body)
+		bytes, err := ioutil.ReadAll(resp.Body)
 		if err != nil {
 			return fmt.Errorf("soundcloud: error decoding body []byte: %s", err.Error())
 		}
