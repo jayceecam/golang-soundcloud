@@ -43,7 +43,7 @@ func (t *TrackApi) Stream() (string, error) {
 	bytes := make([]byte, 0)
 	err := t.api.get(t.base+"/favorites", nil, &bytes)
 	if len(bytes) > 0 {
-		ret = string(bytes)
+		ret = string(bytes[:])
 	}
 	return ret, err
 }
