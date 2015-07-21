@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"ioutil"
 	"net/http"
 	"net/url"
 	"strings"
@@ -140,6 +141,14 @@ func (api *Api) do(req *http.Request, r interface{}) error {
 
 	if resp.StatusCode > 399 {
 		return newApiError(req, resp)
+	}
+
+	if _, ok := r.(*[]byte); ok {
+		bytes, err = ioutil.ReadAll(resp.Body)
+		if err != nil {
+			return fmt.Errorf("soundcloud: error decoding body []byte: %s", err.Error())
+		}
+		*r = bytes
 	}
 
 	if err := decodeResponse(resp.Body, r); err != nil {
