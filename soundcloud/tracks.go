@@ -41,7 +41,7 @@ func (t *TrackApi) Favorite(id uint64) *userEndpoint {
 func (t *TrackApi) Stream() (string, error) {
 	ret := ""
 	bytes := make([]byte, 0)
-	err := t.api.get(t.base+"/favorites", nil, &bytes)
+	err := t.api.get(t.base+"/stream", nil, &bytes)
 	if len(bytes) > 0 {
 		ret = string(bytes)
 	}
